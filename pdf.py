@@ -34,7 +34,9 @@ class Iterator:
         if self.index + 1 >= len(self.l_):
             raise StopIteration
         self.index += 1
-        return self.l_[self.index]
+        if self.index % 2 != 0:
+            self.index += 1
+        return self.l_[self.index] ** 2
 
     # def __iter__(self):
     #     return self
@@ -48,7 +50,7 @@ class A:
         return Iterator(self.some_list)
 
 
-a = A([1, 2, 3, 4])
+a = A([1, 2, 3, 4, 5, 6])
 for i in a:
     print(i)
 
@@ -102,7 +104,7 @@ class Car:
                 self.speed -= 5
             else:
                 raise ValueError
-        except ValueError as something:
+        except ValueError:
             print(f'Car speed cannot be negative')
 
     def stop(self):
